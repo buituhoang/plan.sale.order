@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="plan_sale_order_tree_view" model="ir.ui.view">
+            <field name="name">plan.sale.order.tree.view</field>
+            <field name="model">plan.sale.order</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Plan" create="false">
+                    <field name="name"/>
+                    <field name="quotation"/>
+                    <field name="detail"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="plan_sale_order_form_view" model="ir.ui.view">
+            <field name="name">plan.sale.order.form.view</field>
+            <field name="model">plan.sale.order</field>
+            <field name="arch" type="xml">
+                <form string="Sale Plan" create="false">
+                    <header>
+                        <button name="send_plan" type="object"
+                                string="Send Plan" class="oe_highlight"
+                                states="new"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,sent,approved"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="quotation">
+                                <field name="quotation"/>
+                            </group>
+                            <group name="plan_detail">
+                                <field name="detail"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="partner_lines">
+                                <tree editable="bottom">
+                                    <field name="partner"/>
+                                    <field name="status" readonly="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>
